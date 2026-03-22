@@ -219,8 +219,8 @@ def main():
             all_entries.extend(entries)
             print(f"  [MOCK] {retailer['name']}: {len(entries)} entries")
 
-    # Sort by size then price per nappy (lowest first)
-    all_entries.sort(key=lambda e: (e['size'], e['price_per_nappy'] or float('inf')))
+    # Sort by price per nappy (cheapest first)
+    all_entries.sort(key=lambda e: e['price_per_nappy'] or float('inf'))
 
     # Render HTML
     template_path = os.path.join(os.path.dirname(__file__), 'templates', 'report.html')

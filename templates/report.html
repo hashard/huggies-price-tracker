@@ -2,155 +2,203 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Huggies Nappy Prices - Australia</title>
+  <title>Huggies Price Tracker - Australia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root { --primary: #3498db; --bg: #f5f5f5; --card-bg: #fff; }
-    * { box-sizing: border-box; }
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #10b981;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
       background: var(--bg);
-      color: #333;
-      line-height: 1.4;
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 12px;
+      padding: 16px;
+    }
+
+    /* Header */
+    header {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px 24px;
+      margin-bottom: 20px;
     }
     h1 {
-      color: #2c3e50;
-      font-size: clamp(1.3rem, 5vw, 1.8rem);
-      margin: 0 0 8px 0;
+      font-size: clamp(1.2rem, 4vw, 1.6rem);
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 6px 0;
+      letter-spacing: -0.02em;
     }
-    .last-updated {
-      color: #7f8c8d;
-      font-size: 0.85rem;
+    .subtitle {
+      color: var(--text-light);
+      font-size: 0.9rem;
       margin-bottom: 12px;
     }
-    .intro {
-      font-size: 0.9rem;
-      margin-bottom: 15px;
+    .last-updated {
+      font-size: 0.85rem;
+      color: var(--text-light);
     }
+
+    /* Controls */
     .controls {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin: 15px 0;
+      gap: 10px;
+      margin: 16px 0;
       flex-wrap: wrap;
     }
     .controls label {
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
+      color: var(--text);
     }
     #sizeFilter {
       padding: 8px 12px;
       font-size: 1rem;
-      border: 1px solid #ccc;
+      border: 1px solid var(--border);
       border-radius: 8px;
-      min-width: 160px;
-      background: white;
+      min-width: 150px;
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    #sizeFilter:focus {
+      outline: none;
+      border-color: var(--primary);
     }
 
-    /* Desktop table */
+    /* Table wrapper - horizontal scroll on mobile if needed */
     .table-wrapper {
-      overflow-x: hidden;
       background: var(--card-bg);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      border-radius: 8px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
     table {
       width: 100%;
       border-collapse: collapse;
+      min-width: 700px;
     }
     th {
       background: var(--primary);
       color: white;
       text-align: left;
-      padding: 10px 12px;
-      font-size: 0.8rem;
+      padding: 14px 16px;
+      font-size: 0.75rem;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
     td {
-      padding: 10px 12px;
-      border-bottom: 1px solid #eee;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
       font-size: 0.9rem;
+      color: var(--text);
     }
-    tr:hover { background-color: #f8f9fa; }
-    .price { font-weight: bold; color: #27ae60; }
-    .retailer { font-weight: 600; color: #2c3e50; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover { background-color: #f1f5f9; }
+
+    .retailer { font-weight: 600; color: var(--primary); }
+    .product { color: var(--text); }
     .size {
       display: inline-block;
-      background: #ecf0f1;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 0.75rem;
+      background: #e0f2fe;
+      color: var(--primary-dark);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .pack { color: var(--text-light); font-size: 0.85rem; }
+    .price { font-weight: 700; color: var(--accent); font-size: 1rem; }
+    .unit-price { font-weight: 500; color: var(--text-light); }
+    a {
+      color: var(--primary);
+      text-decoration: none;
       font-weight: 500;
     }
-    a { color: var(--primary); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     .footer {
       text-align: center;
-      color: #bdc3c7;
+      color: var(--text-light);
       font-size: 0.75rem;
-      padding: 20px 10px;
+      padding: 24px 10px;
     }
+    .footer p { margin: 4px 0; }
 
-    /* Mobile: stack rows as cards */
-    @media (max-width: 640px) {
-      .table-wrapper {
-        overflow: visible;
-      }
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-      thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-      }
+    /* Mobile card layout – hide table and show cards */
+    @media (max-width: 700px) {
+      .table-wrapper { overflow: visible; }
+      table, thead, tbody, th, td, tr { display: block; }
+      thead tr { position: absolute; top: -9999px; left: -9999px; }
       tr {
         background: var(--card-bg);
-        border: 1px solid #eee;
-        border-radius: 8px;
-        padding: 10px;
-        margin-bottom: 12px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0;
+        margin-bottom: 16px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
       }
       td {
-        padding: 8px 0;
+        padding: 12px 16px;
+        border: none;
         position: relative;
         padding-left: 35%;
-        border: none;
-        border-bottom: 1px solid #f0f0f0;
         font-size: 0.9rem;
+        display: block;
+        width: 100%;
       }
-      td:last-child { border-bottom: 0; padding-bottom: 0; }
       td::before {
         position: absolute;
-        top: 8px;
-        left: 0;
+        top: 12px;
+        left: 16px;
         width: 32%;
         padding-right: 10px;
         white-space: nowrap;
         font-weight: 600;
-        color: #555;
+        color: var(--text-light);
         content: attr(data-label);
       }
-      td[data-label="Link"] { padding-left: 0; }
+      td[data-label="Action"], td[data-label="Link"] {
+        padding-left: 16px;
+        text-align: left;
+      }
       td[data-label="Link"]::before { display: none; }
-      a { display: inline-block; margin-top: 5px; }
+      .price { font-size: 1.1rem; }
+      .footer { font-size: 0.7rem; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Huggies Nappy Prices - Australia</h1>
-    <div class="last-updated">Last updated: {{timestamp}}</div>
-    <p class="intro">Comparing prices across major Australian retailers. Prices in AUD, per pack. Price per nappy is calculated for easier comparison.</p>
+    <header>
+      <h1>Huggies Nappy Prices - Australia</h1>
+      <div class="subtitle">Find the best deals across major retailers</div>
+      <div class="last-updated">Last updated: {{timestamp}}</div>
+    </header>
 
     <div class="controls">
       <label for="sizeFilter">Filter by size:</label>
@@ -183,16 +231,16 @@
           {% for entry in entries %}
           <tr data-size="{{ entry.size }}">
             <td class="retailer" data-label="Retailer">{{ entry.retailer }}</td>
-            <td data-label="Product">{{ entry.product_name }}</td>
+            <td class="product" data-label="Product">{{ entry.product_name }}</td>
             <td data-label="Size"><span class="size">{{ entry.size }}</span></td>
-            <td data-label="Pack">{{ entry.pack_size }} pcs</td>
+            <td class="pack" data-label="Pack">{{ entry.pack_size }} pcs</td>
             <td class="price" data-label="Price">${{ entry.price }}</td>
-            <td data-label="/Nappy">${{ entry.price_per_nappy }}</td>
-            <td data-label="Link"><a href="{{ entry.url }}" target="_blank" rel="noopener">View</a></td>
+            <td class="unit-price" data-label="/Nappy">${{ entry.price_per_nappy }}</td>
+            <td data-label="Link"><a href="{{ entry.url }}" target="_blank" rel="noopener">View →</a></td>
           </tr>
           {% endfor %}
           {% if not entries %}
-          <tr><td colspan="7" style="text-align:center;padding:20px;">No data collected yet. Please check the scraper configuration.</td></tr>
+          <tr><td colspan="7" style="text-align:center;padding:30px;color:#94a3b8;">No data available yet.</td></tr>
           {% endif %}
         </tbody>
       </table>
