@@ -229,8 +229,7 @@ def main():
     tmpl = Template(template_str)
     html_out = tmpl.render(entries=all_entries, timestamp=now.strftime('%Y-%m-%d %H:%M %Z'))
 
-    out_path = os.path.join(os.path.dirname(__file__), 'public', 'index.html')
-    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    out_path = os.path.join(os.path.dirname(__file__), 'index.html')
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(html_out)
 
