@@ -227,7 +227,7 @@ def main():
     with open(template_path, 'r', encoding='utf-8') as f:
         template_str = f.read()
     tmpl = Template(template_str)
-    html_out = tmpl.render(entries=all_entries, timestamp=now.strftime('%Y-%m-%d %H:%M %Z'))
+    html_out = tmpl.render(entries=all_entries, timestamp=now.strftime('%Y-%m-%d %H:%M %Z'), sizes=SIZES)
 
     out_path = os.path.join(os.path.dirname(__file__), 'index.html')
     with open(out_path, 'w', encoding='utf-8') as f:
