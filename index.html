@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Huggies Nappy Prices - Australia</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root { --primary: #3498db; --bg: #f5f5f5; --card-bg: #fff; }
     * { box-sizing: border-box; }
@@ -18,7 +18,7 @@
     .container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 15px;
+      padding: 12px;
     }
     h1 {
       color: #2c3e50;
@@ -43,7 +43,7 @@
     }
     .controls label {
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
     #sizeFilter {
       padding: 8px 12px;
@@ -53,17 +53,17 @@
       min-width: 160px;
       background: white;
     }
+
+    /* Desktop table */
     .table-wrapper {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 0 -15px 20px -15px;
+      overflow-x: hidden;
       background: var(--card-bg);
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 600px;
     }
     th {
       background: var(--primary);
@@ -72,14 +72,11 @@
       padding: 10px 12px;
       font-size: 0.8rem;
       text-transform: uppercase;
-      position: sticky;
-      top: 0;
-      z-index: 1;
     }
     td {
       padding: 10px 12px;
       border-bottom: 1px solid #eee;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
     tr:hover { background-color: #f8f9fa; }
     .price { font-weight: bold; color: #27ae60; }
@@ -94,25 +91,65 @@
     }
     a { color: var(--primary); text-decoration: none; }
     a:hover { text-decoration: underline; }
+
     .footer {
       text-align: center;
       color: #bdc3c7;
       font-size: 0.75rem;
       padding: 20px 10px;
     }
-    @media (max-width: 600px) {
-      .container { padding: 10px; }
-      th, td { padding: 8px 10px; font-size: 0.75rem; }
-      #sizeFilter { width: 100%; }
-      .controls { flex-direction: column; align-items: stretch; }
-      .controls label { margin-bottom: 5px; }
+
+    /* Mobile: stack rows as cards */
+    @media (max-width: 640px) {
+      .table-wrapper {
+        overflow: visible;
+      }
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      tr {
+        background: var(--card-bg);
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      }
+      td {
+        padding: 8px 0;
+        position: relative;
+        padding-left: 35%;
+        border: none;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 0.9rem;
+      }
+      td:last-child { border-bottom: 0; padding-bottom: 0; }
+      td::before {
+        position: absolute;
+        top: 8px;
+        left: 0;
+        width: 32%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: 600;
+        color: #555;
+        content: attr(data-label);
+      }
+      td[data-label="Link"] { padding-left: 0; }
+      td[data-label="Link"]::before { display: none; }
+      a { display: inline-block; margin-top: 5px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Huggies Nappy Prices - Australia</h1>
-    <div class="last-updated">Last updated: 2026-03-22 18:48 UTC+10:00</div>
+    <div class="last-updated">Last updated: 2026-03-22 18:56 UTC+10:00</div>
     <p class="intro">Comparing prices across major Australian retailers. Prices in AUD, per pack. Price per nappy is calculated for easier comparison.</p>
 
     <div class="controls">
@@ -145,703 +182,703 @@
         <tbody>
           
           <tr data-size="1">
-            <td class="retailer">Coles</td>
-            <td>Huggies Gold Nappies Size 1 - 38 Count</td>
-            <td><span class="size">1</span></td>
-            <td>38 pcs</td>
-            <td class="price">$12.23</td>
-            <td>$0.32</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+1+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 1 - 38 Count</td>
+            <td data-label="Size"><span class="size">1</span></td>
+            <td data-label="Pack">38 pcs</td>
+            <td class="price" data-label="Price">$10.94</td>
+            <td data-label="/Nappy">$0.29</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+1+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="1">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Ultra Nappies Size 1 - 44 Count</td>
-            <td><span class="size">1</span></td>
-            <td>44 pcs</td>
-            <td class="price">$13.98</td>
-            <td>$0.32</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+1+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Gold Nappies Size 1 - 30 Count</td>
+            <td data-label="Size"><span class="size">1</span></td>
+            <td data-label="Pack">30 pcs</td>
+            <td class="price" data-label="Price">$8.92</td>
+            <td data-label="/Nappy">$0.3</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+1+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="1">
-            <td class="retailer">Target</td>
-            <td>Huggies Ultra Nappies Size 1 - 30 Count</td>
-            <td><span class="size">1</span></td>
-            <td>30 pcs</td>
-            <td class="price">$9.59</td>
-            <td>$0.32</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+1+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 1 - 30 Count</td>
+            <td data-label="Size"><span class="size">1</span></td>
+            <td data-label="Pack">30 pcs</td>
+            <td class="price" data-label="Price">$9.04</td>
+            <td data-label="/Nappy">$0.3</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+1+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="1">
-            <td class="retailer">Big W</td>
-            <td>Huggies Gold Nappies Size 1 - 44 Count</td>
-            <td><span class="size">1</span></td>
-            <td>44 pcs</td>
-            <td class="price">$15.41</td>
-            <td>$0.35</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+1+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Gold Nappies Size 1 - 38 Count</td>
+            <td data-label="Size"><span class="size">1</span></td>
+            <td data-label="Pack">38 pcs</td>
+            <td class="price" data-label="Price">$12.87</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+1+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="1">
-            <td class="retailer">Target</td>
-            <td>Huggies Gold Nappies Size 1 - 44 Count</td>
-            <td><span class="size">1</span></td>
-            <td>44 pcs</td>
-            <td class="price">$15.84</td>
-            <td>$0.36</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+1+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 1 - 30 Count</td>
+            <td data-label="Size"><span class="size">1</span></td>
+            <td data-label="Pack">30 pcs</td>
+            <td class="price" data-label="Price">$10.17</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+1+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="1">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Gold Nappies Size 1 - 30 Count</td>
-            <td><span class="size">1</span></td>
-            <td>30 pcs</td>
-            <td class="price">$11.15</td>
-            <td>$0.37</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+1+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Gold Nappies Size 1 - 30 Count</td>
+            <td data-label="Size"><span class="size">1</span></td>
+            <td data-label="Pack">30 pcs</td>
+            <td class="price" data-label="Price">$10.14</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+1+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="1">
-            <td class="retailer">Big W</td>
-            <td>Huggies Ultra Nappies Size 1 - 50 Count</td>
-            <td><span class="size">1</span></td>
-            <td>50 pcs</td>
-            <td class="price">$18.79</td>
-            <td>$0.38</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+1+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 1 - 50 Count</td>
+            <td data-label="Size"><span class="size">1</span></td>
+            <td data-label="Pack">50 pcs</td>
+            <td class="price" data-label="Price">$17.75</td>
+            <td data-label="/Nappy">$0.35</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+1+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="1">
-            <td class="retailer">Coles</td>
-            <td>Huggies Ultra Nappies Size 1 - 38 Count</td>
-            <td><span class="size">1</span></td>
-            <td>38 pcs</td>
-            <td class="price">$14.74</td>
-            <td>$0.39</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+1+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Gold Nappies Size 1 - 44 Count</td>
+            <td data-label="Size"><span class="size">1</span></td>
+            <td data-label="Pack">44 pcs</td>
+            <td class="price" data-label="Price">$16.0</td>
+            <td data-label="/Nappy">$0.36</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+1+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="1">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Ultra Nappies Size 1 - 38 Count</td>
-            <td><span class="size">1</span></td>
-            <td>38 pcs</td>
-            <td class="price">$14.97</td>
-            <td>$0.39</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+1+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 1 - 30 Count</td>
+            <td data-label="Size"><span class="size">1</span></td>
+            <td data-label="Pack">30 pcs</td>
+            <td class="price" data-label="Price">$11.09</td>
+            <td data-label="/Nappy">$0.37</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+1+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="1">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Gold Nappies Size 1 - 50 Count</td>
-            <td><span class="size">1</span></td>
-            <td>50 pcs</td>
-            <td class="price">$20.36</td>
-            <td>$0.41</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+1+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Gold Nappies Size 1 - 38 Count</td>
+            <td data-label="Size"><span class="size">1</span></td>
+            <td data-label="Pack">38 pcs</td>
+            <td class="price" data-label="Price">$14.38</td>
+            <td data-label="/Nappy">$0.38</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+1+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="2">
-            <td class="retailer">Coles</td>
-            <td>Huggies Ultra Nappies Size 2 - 44 Count</td>
-            <td><span class="size">2</span></td>
-            <td>44 pcs</td>
-            <td class="price">$13.25</td>
-            <td>$0.3</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+2+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 2 - 44 Count</td>
+            <td data-label="Size"><span class="size">2</span></td>
+            <td data-label="Pack">44 pcs</td>
+            <td class="price" data-label="Price">$13.35</td>
+            <td data-label="/Nappy">$0.3</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+2+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="2">
-            <td class="retailer">Big W</td>
-            <td>Huggies Gold Nappies Size 2 - 44 Count</td>
-            <td><span class="size">2</span></td>
-            <td>44 pcs</td>
-            <td class="price">$13.33</td>
-            <td>$0.3</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+2+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Gold Nappies Size 2 - 44 Count</td>
+            <td data-label="Size"><span class="size">2</span></td>
+            <td data-label="Pack">44 pcs</td>
+            <td class="price" data-label="Price">$13.2</td>
+            <td data-label="/Nappy">$0.3</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+2+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="2">
-            <td class="retailer">Big W</td>
-            <td>Huggies Ultra Nappies Size 2 - 56 Count</td>
-            <td><span class="size">2</span></td>
-            <td>56 pcs</td>
-            <td class="price">$17.68</td>
-            <td>$0.32</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+2+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Gold Nappies Size 2 - 56 Count</td>
+            <td data-label="Size"><span class="size">2</span></td>
+            <td data-label="Pack">56 pcs</td>
+            <td class="price" data-label="Price">$17.52</td>
+            <td data-label="/Nappy">$0.31</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+2+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="2">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Gold Nappies Size 2 - 56 Count</td>
-            <td><span class="size">2</span></td>
-            <td>56 pcs</td>
-            <td class="price">$18.66</td>
-            <td>$0.33</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+2+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Gold Nappies Size 2 - 50 Count</td>
+            <td data-label="Size"><span class="size">2</span></td>
+            <td data-label="Pack">50 pcs</td>
+            <td class="price" data-label="Price">$15.31</td>
+            <td data-label="/Nappy">$0.31</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+2+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="2">
-            <td class="retailer">Target</td>
-            <td>Huggies Gold Nappies Size 2 - 44 Count</td>
-            <td><span class="size">2</span></td>
-            <td>44 pcs</td>
-            <td class="price">$14.44</td>
-            <td>$0.33</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+2+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 2 - 44 Count</td>
+            <td data-label="Size"><span class="size">2</span></td>
+            <td data-label="Pack">44 pcs</td>
+            <td class="price" data-label="Price">$13.71</td>
+            <td data-label="/Nappy">$0.31</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+2+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="2">
-            <td class="retailer">Target</td>
-            <td>Huggies Ultra Nappies Size 2 - 44 Count</td>
-            <td><span class="size">2</span></td>
-            <td>44 pcs</td>
-            <td class="price">$15.05</td>
-            <td>$0.34</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+2+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Gold Nappies Size 2 - 44 Count</td>
+            <td data-label="Size"><span class="size">2</span></td>
+            <td data-label="Pack">44 pcs</td>
+            <td class="price" data-label="Price">$14.2</td>
+            <td data-label="/Nappy">$0.32</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+2+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="2">
-            <td class="retailer">Coles</td>
-            <td>Huggies Gold Nappies Size 2 - 50 Count</td>
-            <td><span class="size">2</span></td>
-            <td>50 pcs</td>
-            <td class="price">$17.42</td>
-            <td>$0.35</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+2+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 2 - 44 Count</td>
+            <td data-label="Size"><span class="size">2</span></td>
+            <td data-label="Pack">44 pcs</td>
+            <td class="price" data-label="Price">$14.08</td>
+            <td data-label="/Nappy">$0.32</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+2+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="2">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Ultra Nappies Size 2 - 56 Count</td>
-            <td><span class="size">2</span></td>
-            <td>56 pcs</td>
-            <td class="price">$19.81</td>
-            <td>$0.35</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+2+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Gold Nappies Size 2 - 38 Count</td>
+            <td data-label="Size"><span class="size">2</span></td>
+            <td data-label="Pack">38 pcs</td>
+            <td class="price" data-label="Price">$13.77</td>
+            <td data-label="/Nappy">$0.36</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+2+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="2">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Gold Nappies Size 2 - 38 Count</td>
-            <td><span class="size">2</span></td>
-            <td>38 pcs</td>
-            <td class="price">$13.88</td>
-            <td>$0.37</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+2+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 2 - 56 Count</td>
+            <td data-label="Size"><span class="size">2</span></td>
+            <td data-label="Pack">56 pcs</td>
+            <td class="price" data-label="Price">$20.4</td>
+            <td data-label="/Nappy">$0.36</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+2+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="2">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Ultra Nappies Size 2 - 50 Count</td>
-            <td><span class="size">2</span></td>
-            <td>50 pcs</td>
-            <td class="price">$20.33</td>
-            <td>$0.41</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+2+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 2 - 56 Count</td>
+            <td data-label="Size"><span class="size">2</span></td>
+            <td data-label="Pack">56 pcs</td>
+            <td class="price" data-label="Price">$22.26</td>
+            <td data-label="/Nappy">$0.4</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+2+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="3">
-            <td class="retailer">Coles</td>
-            <td>Huggies Gold Nappies Size 3 - 56 Count</td>
-            <td><span class="size">3</span></td>
-            <td>56 pcs</td>
-            <td class="price">$17.04</td>
-            <td>$0.3</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+3+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Gold Nappies Size 3 - 56 Count</td>
+            <td data-label="Size"><span class="size">3</span></td>
+            <td data-label="Pack">56 pcs</td>
+            <td class="price" data-label="Price">$16.51</td>
+            <td data-label="/Nappy">$0.29</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+3+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="3">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Ultra Nappies Size 3 - 64 Count</td>
-            <td><span class="size">3</span></td>
-            <td>64 pcs</td>
-            <td class="price">$19.87</td>
-            <td>$0.31</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+3+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Gold Nappies Size 3 - 50 Count</td>
+            <td data-label="Size"><span class="size">3</span></td>
+            <td data-label="Pack">50 pcs</td>
+            <td class="price" data-label="Price">$15.25</td>
+            <td data-label="/Nappy">$0.3</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+3+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="3">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Gold Nappies Size 3 - 50 Count</td>
-            <td><span class="size">3</span></td>
-            <td>50 pcs</td>
-            <td class="price">$17.01</td>
-            <td>$0.34</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+3+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 3 - 64 Count</td>
+            <td data-label="Size"><span class="size">3</span></td>
+            <td data-label="Pack">64 pcs</td>
+            <td class="price" data-label="Price">$19.98</td>
+            <td data-label="/Nappy">$0.31</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+3+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="3">
-            <td class="retailer">Coles</td>
-            <td>Huggies Ultra Nappies Size 3 - 44 Count</td>
-            <td><span class="size">3</span></td>
-            <td>44 pcs</td>
-            <td class="price">$15.44</td>
-            <td>$0.35</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+3+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Gold Nappies Size 3 - 50 Count</td>
+            <td data-label="Size"><span class="size">3</span></td>
+            <td data-label="Pack">50 pcs</td>
+            <td class="price" data-label="Price">$15.86</td>
+            <td data-label="/Nappy">$0.32</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+3+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="3">
-            <td class="retailer">Target</td>
-            <td>Huggies Gold Nappies Size 3 - 44 Count</td>
-            <td><span class="size">3</span></td>
-            <td>44 pcs</td>
-            <td class="price">$15.24</td>
-            <td>$0.35</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+3+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 3 - 56 Count</td>
+            <td data-label="Size"><span class="size">3</span></td>
+            <td data-label="Pack">56 pcs</td>
+            <td class="price" data-label="Price">$19.18</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+3+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="3">
-            <td class="retailer">Target</td>
-            <td>Huggies Ultra Nappies Size 3 - 56 Count</td>
-            <td><span class="size">3</span></td>
-            <td>56 pcs</td>
-            <td class="price">$19.48</td>
-            <td>$0.35</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+3+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 3 - 56 Count</td>
+            <td data-label="Size"><span class="size">3</span></td>
+            <td data-label="Pack">56 pcs</td>
+            <td class="price" data-label="Price">$19.01</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+3+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="3">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Gold Nappies Size 3 - 50 Count</td>
-            <td><span class="size">3</span></td>
-            <td>50 pcs</td>
-            <td class="price">$18.09</td>
-            <td>$0.36</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+3+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 3 - 64 Count</td>
+            <td data-label="Size"><span class="size">3</span></td>
+            <td data-label="Pack">64 pcs</td>
+            <td class="price" data-label="Price">$21.47</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+3+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="3">
-            <td class="retailer">Big W</td>
-            <td>Huggies Gold Nappies Size 3 - 50 Count</td>
-            <td><span class="size">3</span></td>
-            <td>50 pcs</td>
-            <td class="price">$18.54</td>
-            <td>$0.37</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+3+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Gold Nappies Size 3 - 50 Count</td>
+            <td data-label="Size"><span class="size">3</span></td>
+            <td data-label="Pack">50 pcs</td>
+            <td class="price" data-label="Price">$17.42</td>
+            <td data-label="/Nappy">$0.35</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+3+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="3">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Ultra Nappies Size 3 - 64 Count</td>
-            <td><span class="size">3</span></td>
-            <td>64 pcs</td>
-            <td class="price">$24.32</td>
-            <td>$0.38</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+3+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 3 - 44 Count</td>
+            <td data-label="Size"><span class="size">3</span></td>
+            <td data-label="Pack">44 pcs</td>
+            <td class="price" data-label="Price">$16.97</td>
+            <td data-label="/Nappy">$0.39</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+3+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="3">
-            <td class="retailer">Big W</td>
-            <td>Huggies Ultra Nappies Size 3 - 64 Count</td>
-            <td><span class="size">3</span></td>
-            <td>64 pcs</td>
-            <td class="price">$24.17</td>
-            <td>$0.38</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+3+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Gold Nappies Size 3 - 64 Count</td>
+            <td data-label="Size"><span class="size">3</span></td>
+            <td data-label="Pack">64 pcs</td>
+            <td class="price" data-label="Price">$26.38</td>
+            <td data-label="/Nappy">$0.41</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+3+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="4">
-            <td class="retailer">Target</td>
-            <td>Huggies Ultra Nappies Size 4 - 72 Count</td>
-            <td><span class="size">4</span></td>
-            <td>72 pcs</td>
-            <td class="price">$21.07</td>
-            <td>$0.29</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+4+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 4 - 50 Count</td>
+            <td data-label="Size"><span class="size">4</span></td>
+            <td data-label="Pack">50 pcs</td>
+            <td class="price" data-label="Price">$16.11</td>
+            <td data-label="/Nappy">$0.32</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+4+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="4">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Ultra Nappies Size 4 - 72 Count</td>
-            <td><span class="size">4</span></td>
-            <td>72 pcs</td>
-            <td class="price">$22.41</td>
-            <td>$0.31</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+4+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Gold Nappies Size 4 - 72 Count</td>
+            <td data-label="Size"><span class="size">4</span></td>
+            <td data-label="Pack">72 pcs</td>
+            <td class="price" data-label="Price">$22.69</td>
+            <td data-label="/Nappy">$0.32</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+4+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="4">
-            <td class="retailer">Coles</td>
-            <td>Huggies Gold Nappies Size 4 - 64 Count</td>
-            <td><span class="size">4</span></td>
-            <td>64 pcs</td>
-            <td class="price">$20.18</td>
-            <td>$0.32</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+4+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 4 - 50 Count</td>
+            <td data-label="Size"><span class="size">4</span></td>
+            <td data-label="Pack">50 pcs</td>
+            <td class="price" data-label="Price">$15.75</td>
+            <td data-label="/Nappy">$0.32</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+4+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="4">
-            <td class="retailer">Coles</td>
-            <td>Huggies Ultra Nappies Size 4 - 72 Count</td>
-            <td><span class="size">4</span></td>
-            <td>72 pcs</td>
-            <td class="price">$22.88</td>
-            <td>$0.32</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+4+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 4 - 72 Count</td>
+            <td data-label="Size"><span class="size">4</span></td>
+            <td data-label="Pack">72 pcs</td>
+            <td class="price" data-label="Price">$23.78</td>
+            <td data-label="/Nappy">$0.33</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+4+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="4">
-            <td class="retailer">Big W</td>
-            <td>Huggies Gold Nappies Size 4 - 50 Count</td>
-            <td><span class="size">4</span></td>
-            <td>50 pcs</td>
-            <td class="price">$16.44</td>
-            <td>$0.33</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+4+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 4 - 64 Count</td>
+            <td data-label="Size"><span class="size">4</span></td>
+            <td data-label="Pack">64 pcs</td>
+            <td class="price" data-label="Price">$21.99</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+4+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="4">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Gold Nappies Size 4 - 50 Count</td>
-            <td><span class="size">4</span></td>
-            <td>50 pcs</td>
-            <td class="price">$16.86</td>
-            <td>$0.34</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+4+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Gold Nappies Size 4 - 64 Count</td>
+            <td data-label="Size"><span class="size">4</span></td>
+            <td data-label="Pack">64 pcs</td>
+            <td class="price" data-label="Price">$22.68</td>
+            <td data-label="/Nappy">$0.35</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+4+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="4">
-            <td class="retailer">Target</td>
-            <td>Huggies Gold Nappies Size 4 - 72 Count</td>
-            <td><span class="size">4</span></td>
-            <td>72 pcs</td>
-            <td class="price">$24.43</td>
-            <td>$0.34</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+4+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 4 - 72 Count</td>
+            <td data-label="Size"><span class="size">4</span></td>
+            <td data-label="Pack">72 pcs</td>
+            <td class="price" data-label="Price">$26.17</td>
+            <td data-label="/Nappy">$0.36</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+4+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="4">
-            <td class="retailer">Big W</td>
-            <td>Huggies Ultra Nappies Size 4 - 64 Count</td>
-            <td><span class="size">4</span></td>
-            <td>64 pcs</td>
-            <td class="price">$22.68</td>
-            <td>$0.35</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+4+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Gold Nappies Size 4 - 72 Count</td>
+            <td data-label="Size"><span class="size">4</span></td>
+            <td data-label="Pack">72 pcs</td>
+            <td class="price" data-label="Price">$26.33</td>
+            <td data-label="/Nappy">$0.37</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+4+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="4">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Ultra Nappies Size 4 - 72 Count</td>
-            <td><span class="size">4</span></td>
-            <td>72 pcs</td>
-            <td class="price">$27.16</td>
-            <td>$0.38</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+4+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Gold Nappies Size 4 - 72 Count</td>
+            <td data-label="Size"><span class="size">4</span></td>
+            <td data-label="Pack">72 pcs</td>
+            <td class="price" data-label="Price">$26.67</td>
+            <td data-label="/Nappy">$0.37</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+4+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="4">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Gold Nappies Size 4 - 64 Count</td>
-            <td><span class="size">4</span></td>
-            <td>64 pcs</td>
-            <td class="price">$26.6</td>
-            <td>$0.42</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+4+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Gold Nappies Size 4 - 50 Count</td>
+            <td data-label="Size"><span class="size">4</span></td>
+            <td data-label="Pack">50 pcs</td>
+            <td class="price" data-label="Price">$18.91</td>
+            <td data-label="/Nappy">$0.38</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+4+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="5">
-            <td class="retailer">Coles</td>
-            <td>Huggies Gold Nappies Size 5 - 72 Count</td>
-            <td><span class="size">5</span></td>
-            <td>72 pcs</td>
-            <td class="price">$21.62</td>
-            <td>$0.3</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+5+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Gold Nappies Size 5 - 56 Count</td>
+            <td data-label="Size"><span class="size">5</span></td>
+            <td data-label="Pack">56 pcs</td>
+            <td class="price" data-label="Price">$16.34</td>
+            <td data-label="/Nappy">$0.29</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+5+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="5">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Ultra Nappies Size 5 - 72 Count</td>
-            <td><span class="size">5</span></td>
-            <td>72 pcs</td>
-            <td class="price">$21.7</td>
-            <td>$0.3</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+5+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Gold Nappies Size 5 - 72 Count</td>
+            <td data-label="Size"><span class="size">5</span></td>
+            <td data-label="Pack">72 pcs</td>
+            <td class="price" data-label="Price">$22.5</td>
+            <td data-label="/Nappy">$0.31</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+5+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="5">
-            <td class="retailer">Big W</td>
-            <td>Huggies Gold Nappies Size 5 - 64 Count</td>
-            <td><span class="size">5</span></td>
-            <td>64 pcs</td>
-            <td class="price">$19.62</td>
-            <td>$0.31</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+5+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 5 - 80 Count</td>
+            <td data-label="Size"><span class="size">5</span></td>
+            <td data-label="Pack">80 pcs</td>
+            <td class="price" data-label="Price">$24.95</td>
+            <td data-label="/Nappy">$0.31</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+5+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="5">
-            <td class="retailer">Big W</td>
-            <td>Huggies Ultra Nappies Size 5 - 56 Count</td>
-            <td><span class="size">5</span></td>
-            <td>56 pcs</td>
-            <td class="price">$17.73</td>
-            <td>$0.32</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+5+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 5 - 64 Count</td>
+            <td data-label="Size"><span class="size">5</span></td>
+            <td data-label="Pack">64 pcs</td>
+            <td class="price" data-label="Price">$20.66</td>
+            <td data-label="/Nappy">$0.32</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+5+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="5">
-            <td class="retailer">Target</td>
-            <td>Huggies Gold Nappies Size 5 - 64 Count</td>
-            <td><span class="size">5</span></td>
-            <td>64 pcs</td>
-            <td class="price">$20.64</td>
-            <td>$0.32</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+5+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 5 - 80 Count</td>
+            <td data-label="Size"><span class="size">5</span></td>
+            <td data-label="Pack">80 pcs</td>
+            <td class="price" data-label="Price">$26.49</td>
+            <td data-label="/Nappy">$0.33</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+5+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="5">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Gold Nappies Size 5 - 72 Count</td>
-            <td><span class="size">5</span></td>
-            <td>72 pcs</td>
-            <td class="price">$23.94</td>
-            <td>$0.33</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+5+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Gold Nappies Size 5 - 56 Count</td>
+            <td data-label="Size"><span class="size">5</span></td>
+            <td data-label="Pack">56 pcs</td>
+            <td class="price" data-label="Price">$18.76</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+5+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="5">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Gold Nappies Size 5 - 72 Count</td>
-            <td><span class="size">5</span></td>
-            <td>72 pcs</td>
-            <td class="price">$23.68</td>
-            <td>$0.33</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+5+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 5 - 56 Count</td>
+            <td data-label="Size"><span class="size">5</span></td>
+            <td data-label="Pack">56 pcs</td>
+            <td class="price" data-label="Price">$19.23</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+5+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="5">
-            <td class="retailer">Coles</td>
-            <td>Huggies Ultra Nappies Size 5 - 56 Count</td>
-            <td><span class="size">5</span></td>
-            <td>56 pcs</td>
-            <td class="price">$19.24</td>
-            <td>$0.34</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+5+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 5 - 72 Count</td>
+            <td data-label="Size"><span class="size">5</span></td>
+            <td data-label="Pack">72 pcs</td>
+            <td class="price" data-label="Price">$27.65</td>
+            <td data-label="/Nappy">$0.38</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+5+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="5">
-            <td class="retailer">Target</td>
-            <td>Huggies Ultra Nappies Size 5 - 64 Count</td>
-            <td><span class="size">5</span></td>
-            <td>64 pcs</td>
-            <td class="price">$22.49</td>
-            <td>$0.35</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+5+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Gold Nappies Size 5 - 80 Count</td>
+            <td data-label="Size"><span class="size">5</span></td>
+            <td data-label="Pack">80 pcs</td>
+            <td class="price" data-label="Price">$30.2</td>
+            <td data-label="/Nappy">$0.38</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+5+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="5">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Ultra Nappies Size 5 - 64 Count</td>
-            <td><span class="size">5</span></td>
-            <td>64 pcs</td>
-            <td class="price">$25.57</td>
-            <td>$0.4</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+5+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Gold Nappies Size 5 - 64 Count</td>
+            <td data-label="Size"><span class="size">5</span></td>
+            <td data-label="Pack">64 pcs</td>
+            <td class="price" data-label="Price">$26.5</td>
+            <td data-label="/Nappy">$0.41</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+5+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="6">
-            <td class="retailer">Big W</td>
-            <td>Huggies Ultra Nappies Size 6 - 64 Count</td>
-            <td><span class="size">6</span></td>
-            <td>64 pcs</td>
-            <td class="price">$18.81</td>
-            <td>$0.29</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+6+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 6 - 64 Count</td>
+            <td data-label="Size"><span class="size">6</span></td>
+            <td data-label="Pack">64 pcs</td>
+            <td class="price" data-label="Price">$18.66</td>
+            <td data-label="/Nappy">$0.29</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+6+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="6">
-            <td class="retailer">Coles</td>
-            <td>Huggies Ultra Nappies Size 6 - 96 Count</td>
-            <td><span class="size">6</span></td>
-            <td>96 pcs</td>
-            <td class="price">$30.08</td>
-            <td>$0.31</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+6+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Gold Nappies Size 6 - 72 Count</td>
+            <td data-label="Size"><span class="size">6</span></td>
+            <td data-label="Pack">72 pcs</td>
+            <td class="price" data-label="Price">$22.88</td>
+            <td data-label="/Nappy">$0.32</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+6+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="6">
-            <td class="retailer">Coles</td>
-            <td>Huggies Gold Nappies Size 6 - 72 Count</td>
-            <td><span class="size">6</span></td>
-            <td>72 pcs</td>
-            <td class="price">$22.93</td>
-            <td>$0.32</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+6+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Gold Nappies Size 6 - 80 Count</td>
+            <td data-label="Size"><span class="size">6</span></td>
+            <td data-label="Pack">80 pcs</td>
+            <td class="price" data-label="Price">$26.41</td>
+            <td data-label="/Nappy">$0.33</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+6+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="6">
-            <td class="retailer">Target</td>
-            <td>Huggies Ultra Nappies Size 6 - 64 Count</td>
-            <td><span class="size">6</span></td>
-            <td>64 pcs</td>
-            <td class="price">$21.29</td>
-            <td>$0.33</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+6+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 6 - 80 Count</td>
+            <td data-label="Size"><span class="size">6</span></td>
+            <td data-label="Pack">80 pcs</td>
+            <td class="price" data-label="Price">$26.86</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+6+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="6">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Gold Nappies Size 6 - 80 Count</td>
-            <td><span class="size">6</span></td>
-            <td>80 pcs</td>
-            <td class="price">$27.97</td>
-            <td>$0.35</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+6+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 6 - 80 Count</td>
+            <td data-label="Size"><span class="size">6</span></td>
+            <td data-label="Pack">80 pcs</td>
+            <td class="price" data-label="Price">$26.9</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+6+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="6">
-            <td class="retailer">Big W</td>
-            <td>Huggies Gold Nappies Size 6 - 96 Count</td>
-            <td><span class="size">6</span></td>
-            <td>96 pcs</td>
-            <td class="price">$33.15</td>
-            <td>$0.35</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+6+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 6 - 96 Count</td>
+            <td data-label="Size"><span class="size">6</span></td>
+            <td data-label="Pack">96 pcs</td>
+            <td class="price" data-label="Price">$33.25</td>
+            <td data-label="/Nappy">$0.35</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+6+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="6">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Gold Nappies Size 6 - 80 Count</td>
-            <td><span class="size">6</span></td>
-            <td>80 pcs</td>
-            <td class="price">$28.69</td>
-            <td>$0.36</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+6+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Gold Nappies Size 6 - 72 Count</td>
+            <td data-label="Size"><span class="size">6</span></td>
+            <td data-label="Pack">72 pcs</td>
+            <td class="price" data-label="Price">$25.34</td>
+            <td data-label="/Nappy">$0.35</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+6+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="6">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Ultra Nappies Size 6 - 96 Count</td>
-            <td><span class="size">6</span></td>
-            <td>96 pcs</td>
-            <td class="price">$35.02</td>
-            <td>$0.36</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+6+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Ultra Nappies Size 6 - 72 Count</td>
+            <td data-label="Size"><span class="size">6</span></td>
+            <td data-label="Pack">72 pcs</td>
+            <td class="price" data-label="Price">$27.25</td>
+            <td data-label="/Nappy">$0.38</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+6+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="6">
-            <td class="retailer">Target</td>
-            <td>Huggies Gold Nappies Size 6 - 80 Count</td>
-            <td><span class="size">6</span></td>
-            <td>80 pcs</td>
-            <td class="price">$28.89</td>
-            <td>$0.36</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+6+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Gold Nappies Size 6 - 64 Count</td>
+            <td data-label="Size"><span class="size">6</span></td>
+            <td data-label="Pack">64 pcs</td>
+            <td class="price" data-label="Price">$25.17</td>
+            <td data-label="/Nappy">$0.39</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+6+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="6">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Ultra Nappies Size 6 - 64 Count</td>
-            <td><span class="size">6</span></td>
-            <td>64 pcs</td>
-            <td class="price">$26.85</td>
-            <td>$0.42</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+6+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Gold Nappies Size 6 - 96 Count</td>
+            <td data-label="Size"><span class="size">6</span></td>
+            <td data-label="Pack">96 pcs</td>
+            <td class="price" data-label="Price">$37.35</td>
+            <td data-label="/Nappy">$0.39</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+6+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="Newborn">
-            <td class="retailer">Big W</td>
-            <td>Huggies Gold Nappies Size Newborn - 38 Count</td>
-            <td><span class="size">Newborn</span></td>
-            <td>38 pcs</td>
-            <td class="price">$11.85</td>
-            <td>$0.31</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+Newborn+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Gold Nappies Size Newborn - 30 Count</td>
+            <td data-label="Size"><span class="size">Newborn</span></td>
+            <td data-label="Pack">30 pcs</td>
+            <td class="price" data-label="Price">$9.04</td>
+            <td data-label="/Nappy">$0.3</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+Newborn+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="Newborn">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Gold Nappies Size Newborn - 22 Count</td>
-            <td><span class="size">Newborn</span></td>
-            <td>22 pcs</td>
-            <td class="price">$7.05</td>
-            <td>$0.32</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+Newborn+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Gold Nappies Size Newborn - 30 Count</td>
+            <td data-label="Size"><span class="size">Newborn</span></td>
+            <td data-label="Pack">30 pcs</td>
+            <td class="price" data-label="Price">$9.69</td>
+            <td data-label="/Nappy">$0.32</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+Newborn+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="Newborn">
-            <td class="retailer">Woolworths</td>
-            <td>Huggies Ultra Nappies Size Newborn - 38 Count</td>
-            <td><span class="size">Newborn</span></td>
-            <td>38 pcs</td>
-            <td class="price">$12.41</td>
-            <td>$0.33</td>
-            <td><a href="https://www.woolworths.com.au/search?q=huggies+Newborn+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Gold Nappies Size Newborn - 22 Count</td>
+            <td data-label="Size"><span class="size">Newborn</span></td>
+            <td data-label="Pack">22 pcs</td>
+            <td class="price" data-label="Price">$7.51</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+Newborn+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="Newborn">
-            <td class="retailer">Big W</td>
-            <td>Huggies Ultra Nappies Size Newborn - 22 Count</td>
-            <td><span class="size">Newborn</span></td>
-            <td>22 pcs</td>
-            <td class="price">$7.22</td>
-            <td>$0.33</td>
-            <td><a href="https://www.bigw.com.au/search?q=huggies+Newborn+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Ultra Nappies Size Newborn - 38 Count</td>
+            <td data-label="Size"><span class="size">Newborn</span></td>
+            <td data-label="Pack">38 pcs</td>
+            <td class="price" data-label="Price">$13.06</td>
+            <td data-label="/Nappy">$0.34</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+Newborn+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="Newborn">
-            <td class="retailer">Coles</td>
-            <td>Huggies Ultra Nappies Size Newborn - 22 Count</td>
-            <td><span class="size">Newborn</span></td>
-            <td>22 pcs</td>
-            <td class="price">$7.52</td>
-            <td>$0.34</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+Newborn+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Coles</td>
+            <td data-label="Product">Huggies Ultra Nappies Size Newborn - 38 Count</td>
+            <td data-label="Size"><span class="size">Newborn</span></td>
+            <td data-label="Pack">38 pcs</td>
+            <td class="price" data-label="Price">$13.36</td>
+            <td data-label="/Nappy">$0.35</td>
+            <td data-label="Link"><a href="https://www.coles.com.au/search?q=huggies+Newborn+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="Newborn">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Gold Nappies Size Newborn - 22 Count</td>
-            <td><span class="size">Newborn</span></td>
-            <td>22 pcs</td>
-            <td class="price">$7.5</td>
-            <td>$0.34</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+Newborn+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Gold Nappies Size Newborn - 38 Count</td>
+            <td data-label="Size"><span class="size">Newborn</span></td>
+            <td data-label="Pack">38 pcs</td>
+            <td class="price" data-label="Price">$13.25</td>
+            <td data-label="/Nappy">$0.35</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+Newborn+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="Newborn">
-            <td class="retailer">Coles</td>
-            <td>Huggies Gold Nappies Size Newborn - 30 Count</td>
-            <td><span class="size">Newborn</span></td>
-            <td>30 pcs</td>
-            <td class="price">$11.11</td>
-            <td>$0.37</td>
-            <td><a href="https://www.coles.com.au/search?q=huggies+Newborn+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Chemist Warehouse</td>
+            <td data-label="Product">Huggies Gold Nappies Size Newborn - 38 Count</td>
+            <td data-label="Size"><span class="size">Newborn</span></td>
+            <td data-label="Pack">38 pcs</td>
+            <td class="price" data-label="Price">$13.17</td>
+            <td data-label="/Nappy">$0.35</td>
+            <td data-label="Link"><a href="https://www.chemistwarehouse.com.au/search?q=huggies+Newborn+Gold" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="Newborn">
-            <td class="retailer">Target</td>
-            <td>Huggies Gold Nappies Size Newborn - 38 Count</td>
-            <td><span class="size">Newborn</span></td>
-            <td>38 pcs</td>
-            <td class="price">$14.77</td>
-            <td>$0.39</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+Newborn+Gold" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Target</td>
+            <td data-label="Product">Huggies Ultra Nappies Size Newborn - 30 Count</td>
+            <td data-label="Size"><span class="size">Newborn</span></td>
+            <td data-label="Pack">30 pcs</td>
+            <td class="price" data-label="Price">$10.57</td>
+            <td data-label="/Nappy">$0.35</td>
+            <td data-label="Link"><a href="https://www.target.com.au/search?q=huggies+Newborn+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="Newborn">
-            <td class="retailer">Target</td>
-            <td>Huggies Ultra Nappies Size Newborn - 38 Count</td>
-            <td><span class="size">Newborn</span></td>
-            <td>38 pcs</td>
-            <td class="price">$14.78</td>
-            <td>$0.39</td>
-            <td><a href="https://www.target.com.au/search?q=huggies+Newborn+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Big W</td>
+            <td data-label="Product">Huggies Ultra Nappies Size Newborn - 22 Count</td>
+            <td data-label="Size"><span class="size">Newborn</span></td>
+            <td data-label="Pack">22 pcs</td>
+            <td class="price" data-label="Price">$8.03</td>
+            <td data-label="/Nappy">$0.36</td>
+            <td data-label="Link"><a href="https://www.bigw.com.au/search?q=huggies+Newborn+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           <tr data-size="Newborn">
-            <td class="retailer">Chemist Warehouse</td>
-            <td>Huggies Ultra Nappies Size Newborn - 22 Count</td>
-            <td><span class="size">Newborn</span></td>
-            <td>22 pcs</td>
-            <td class="price">$9.13</td>
-            <td>$0.41</td>
-            <td><a href="https://www.chemistwarehouse.com.au/search?q=huggies+Newborn+Ultra" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">Woolworths</td>
+            <td data-label="Product">Huggies Ultra Nappies Size Newborn - 38 Count</td>
+            <td data-label="Size"><span class="size">Newborn</span></td>
+            <td data-label="Pack">38 pcs</td>
+            <td class="price" data-label="Price">$13.99</td>
+            <td data-label="/Nappy">$0.37</td>
+            <td data-label="Link"><a href="https://www.woolworths.com.au/search?q=huggies+Newborn+Ultra" target="_blank" rel="noopener">View</a></td>
           </tr>
           
           

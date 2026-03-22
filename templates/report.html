@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Huggies Nappy Prices - Australia</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root { --primary: #3498db; --bg: #f5f5f5; --card-bg: #fff; }
     * { box-sizing: border-box; }
@@ -18,7 +18,7 @@
     .container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 15px;
+      padding: 12px;
     }
     h1 {
       color: #2c3e50;
@@ -43,7 +43,7 @@
     }
     .controls label {
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
     #sizeFilter {
       padding: 8px 12px;
@@ -53,17 +53,17 @@
       min-width: 160px;
       background: white;
     }
+
+    /* Desktop table */
     .table-wrapper {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 0 -15px 20px -15px;
+      overflow-x: hidden;
       background: var(--card-bg);
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 600px;
     }
     th {
       background: var(--primary);
@@ -72,14 +72,11 @@
       padding: 10px 12px;
       font-size: 0.8rem;
       text-transform: uppercase;
-      position: sticky;
-      top: 0;
-      z-index: 1;
     }
     td {
       padding: 10px 12px;
       border-bottom: 1px solid #eee;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
     tr:hover { background-color: #f8f9fa; }
     .price { font-weight: bold; color: #27ae60; }
@@ -94,18 +91,58 @@
     }
     a { color: var(--primary); text-decoration: none; }
     a:hover { text-decoration: underline; }
+
     .footer {
       text-align: center;
       color: #bdc3c7;
       font-size: 0.75rem;
       padding: 20px 10px;
     }
-    @media (max-width: 600px) {
-      .container { padding: 10px; }
-      th, td { padding: 8px 10px; font-size: 0.75rem; }
-      #sizeFilter { width: 100%; }
-      .controls { flex-direction: column; align-items: stretch; }
-      .controls label { margin-bottom: 5px; }
+
+    /* Mobile: stack rows as cards */
+    @media (max-width: 640px) {
+      .table-wrapper {
+        overflow: visible;
+      }
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      tr {
+        background: var(--card-bg);
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      }
+      td {
+        padding: 8px 0;
+        position: relative;
+        padding-left: 35%;
+        border: none;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 0.9rem;
+      }
+      td:last-child { border-bottom: 0; padding-bottom: 0; }
+      td::before {
+        position: absolute;
+        top: 8px;
+        left: 0;
+        width: 32%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: 600;
+        color: #555;
+        content: attr(data-label);
+      }
+      td[data-label="Link"] { padding-left: 0; }
+      td[data-label="Link"]::before { display: none; }
+      a { display: inline-block; margin-top: 5px; }
     }
   </style>
 </head>
@@ -145,13 +182,13 @@
         <tbody>
           {% for entry in entries %}
           <tr data-size="{{ entry.size }}">
-            <td class="retailer">{{ entry.retailer }}</td>
-            <td>{{ entry.product_name }}</td>
-            <td><span class="size">{{ entry.size }}</span></td>
-            <td>{{ entry.pack_size }} pcs</td>
-            <td class="price">${{ entry.price }}</td>
-            <td>${{ entry.price_per_nappy }}</td>
-            <td><a href="{{ entry.url }}" target="_blank" rel="noopener">View</a></td>
+            <td class="retailer" data-label="Retailer">{{ entry.retailer }}</td>
+            <td data-label="Product">{{ entry.product_name }}</td>
+            <td data-label="Size"><span class="size">{{ entry.size }}</span></td>
+            <td data-label="Pack">{{ entry.pack_size }} pcs</td>
+            <td class="price" data-label="Price">${{ entry.price }}</td>
+            <td data-label="/Nappy">${{ entry.price_per_nappy }}</td>
+            <td data-label="Link"><a href="{{ entry.url }}" target="_blank" rel="noopener">View</a></td>
           </tr>
           {% endfor %}
           {% if not entries %}
